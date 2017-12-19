@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Curso</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+ 
+   <nav class="navbar navbar-dark bg-dark">
+    <ul class="nav justify-content-end">
+      <%- if user_signed_in? %>
+       <a class="navbar-brand" href="#">
+        <img src="https://n6-img-fp.akamaized.net/iconos-gratis/foto-instagram-logo-camara-esquema_318-56004.jpg?size=338&ext=jpg" width="30" height="30" class="d-inline-block align-top text-center" alt="">
+        Intalam
+       </a>
+         <li class="nav-item nav-masthead">
+          <%=link_to 'home', root_path,class:"nav-link text-white active" %>              
+        </li>
+         <li class="nav-item nav-masthead">
+          <%=link_to 'Publicar',new_image_path, class:"nav-link text-white " %>              
+        </li>
+          <li class="nav-item nav-masthead">
+          <%=link_to 'Salir',destroy_user_session_path, method: :delete, class:"nav-link text-white " %>              
+        </li>
+
+        <div class="form-inline my-2 my-lg-0">
+           <%= form_tag "/search/index", method: :get do %>
+<!--                   <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+ -->                  <%=text_field_tag :keyword, nil,placeholder:'search', class:'form-control mr-sm-2'  %>
+
+                  <%= content_tag :button, type: :submit, class:'btn btn-outline-primary my-2 my-sm-0 text-white' do %>
+                    Buscar
+                  <% end %>
+<!--                 <button class="btn btn-outline-primary my-2 my-sm-0 text-white" type="submit">Buscar</button>
+ -->            <%end%>
+        </div>
+     
+      <% else %>
+        <li class="nav-item">
+          <%=link_to 'Entrar', new_user_session_path, class:"nav-link text-white"%>              
+        </li>
+          <li class="nav-item">
+            <%=link_to 'Registrar', new_user_registration_path,  class:"nav-link text-white"%>              
+        </li>
+      <%end %>
+
+    </ul>
+  </nav>
+  <div class="container">
+     <% if notice%>
+        <div class="alert alert-success alert-dismissable" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+
+          <%= notice %>
+        </div>    
+    <% end %>
+       <% if alert %>
+        <div class="alert alert-danger alert-dismissable" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+          <%= alert %>
+        </div>    
+    <% end %>
+    
+     <%= yield %>
+     <hr>  
+     
+    </div>
+  </body>
+</html>

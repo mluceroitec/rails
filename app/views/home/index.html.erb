@@ -1,0 +1,33 @@
+<% if user_signed_in? %>
+    <br>  
+    
+    <div class="span3 well">
+      <center>
+        <img   src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"  width="140" height="140" class="img-rounded img">
+        <h3> <%= current_user.name %><button class=" margin btn btn-outline-primary ">Seguir</button></h3>
+        <p>Publicaciones: <%= @images.count %> Seguidores: 20 Seguidos: 190</p>
+        <p>Instalam.com Twitter: @Instalam  Facebook: Instalam</p>
+      </center>
+    </div>
+    <hr>  
+    
+    <div class="row">
+      <% if @images.any? %>
+           <%= render @images %>
+
+      <% else %>
+       <div class="col-md-6 offset-md-3">                          
+          <p class="text-center text-secondary">Todavía no tienes publicaciones, puedes empezar haciendo click aquí  <%=link_to 'Publicar',new_image_path, class:" " %>              
+          </p>
+      </div>
+         
+
+      
+      <% end %>
+
+    </div>
+<% else %>
+    <h1>Rails</h1>
+<% end %>
+
+    

@@ -1,0 +1,19 @@
+
+<div class="col-sm-4 offset-sm-4">
+<br>
+	<h4>Imagen</h4>
+    <figure class="figure">
+
+	<%= image_tag @image.picture.medium.url, class: 'figure-img img-fluid rounded' %> 
+    <figcaption class="figure-caption">
+
+		<%= @image.description %>
+	 	<%= link_to t('.edit_link'),edit_image_path(@image) %> 
+        <%= link_to t('.remove_link'),@image, method: :delete,data:{confirm: 'Seguro?'} %>
+        <br>
+        <%=link_to 'Volver al menu', root_path, class:'btn btn-primary'%>              
+    </figcaption>
+
+    </figure>
+
+</div>
